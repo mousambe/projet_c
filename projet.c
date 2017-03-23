@@ -1,5 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <fcntl.h>
+
 
 typedef struct {
 	int numero;
@@ -31,7 +35,7 @@ int tailleFichier()
 
 int nbEnregistrements()
 {
-    return (tailleFichier()/(STRUCTSIZE));
+    return (tailleFichier()/(sizeof(struct)));
 }
 
 int verifierNumero (int numero)
@@ -79,4 +83,9 @@ void ajouterMembre() {
 	FILE * fichier = fopen("membres.txt", "bw");
 	fwrite(nouveau, sizeof(nouveau), 1, fichier);
 	fclose(fichier);
+}
+
+void main() {
+	ajouterMembre();
+	getch();
 }
